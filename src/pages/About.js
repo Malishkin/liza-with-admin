@@ -3,33 +3,35 @@ import axios from "axios";
 import "./About.css";
 
 const About = () => {
-  const [aboutText, setAboutText] = useState("");
-  const [aboutImage, setAboutImage] = useState("");
+  const [about, setAbout] = useState(null);
+
+  const apiBaseUrl =
+    process.env.REACT_APP_API_URL || "http://localhost:5000/api";
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/about")
-      .then((res) => {
-        setAboutText(res.data.text);
-        setAboutImage(res.data.image);
-      })
-      .catch((err) => console.error(err));
-  }, []);
+    const fetchAbout = async () => {
+      try {
+        const response = await axios.get(`${apiBaseUrl}/about`);
+        setAbout(response.data);
+      } catch (error) {
+        console.error("Error fetching about data:", error);
+      }
+    };
+
+    fetchAbout();
+  }, [apiBaseUrl]);
+
+  if (!about) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="about-container">
       <div className="about-text">
-        {aboutText.split("\n").map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
-        ))}
-        <h3>Services</h3>
-        <ul>
-          <li>Styling</li>
-          <li>Creative Consulting</li>
-        </ul>
+        <p>{about.text}</p>
       </div>
       <div className="about-image">
-        {aboutImage && <img src={aboutImage} alt="El Messeg" />}
+        <img src={about.image} alt="El Messeg" />
       </div>
     </div>
   );
