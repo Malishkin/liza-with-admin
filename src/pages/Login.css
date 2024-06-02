@@ -1,0 +1,86 @@
+.login-container .login-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto;
+  width: 80%;
+  position: relative; /* Add this line */
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.login-container h2 {
+  display: flex;
+  justify-content: center;
+}
+
+.login-container input[type="text"],
+.password-container input[type="password"] {
+  /* Update this line */
+  width: 100%; /* Update this line */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.login-container button {
+  margin: auto !important;
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 0.3s ease;
+  display: flex;
+}
+
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+.login-container .password-container {
+  display: flex;
+  align-items: center;
+  position: relative; /* Add this line */
+  width: 100%; /* Add this line */
+}
+
+.password-toggle-icon {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%; /* Add this line */
+  transform: translateY(-50%); /* Add this line */
+}
+
+.password-toggle-icon svg {
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .login-container .login-group {
+    margin: 0.5rem auto;
+  }
+
+  .login-container button {
+    margin: 10px auto 0;
+    max-width: 50%;
+  }
+
+  .password-container {
+    width: 100%; /* Add this line */
+  }
+}
